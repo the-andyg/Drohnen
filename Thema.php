@@ -25,5 +25,22 @@
     </li>
 </ul>
 
+<div class="Textfeld">
+
+    <!-- <h3>Neues Thema:</h3>
+    <form method="post" action="ThemaErstellen.php">
+        Titel:<br> <input type="text" name="titel" class="textarea"><br><br>
+        Text:<br> <textarea rows="6" name="textarea" class="textarea"></textarea><br><br>
+        <div class="red">
+            <?php echo $error; ?>
+        </div>
+        <div class="wrapper">
+            <div class="box1"><a href="Hauptseite.php">abbrechen</a></div>
+            <div class="box2"><input type="submit" value="absenden" class="absenden"></div>
+        </div>
+    </form> -->
+
+</div>
+
 </body>
 </html>

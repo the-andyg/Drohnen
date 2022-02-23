@@ -8,12 +8,33 @@
 <body>
 
 <?php
+SESSION_START();
 $error = "";
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    if (empty($_POST['titel'])) {
-        $error = "Bitte gebe einen Titel ein";
-    } else if (empty($_POST['textarea'])) {
-        $error = "Bitte gebe einen Text ein";
+    if (empty($_POST['titel']) or empty($_POST['textarea'])) {
+        $error = "Bitte fülle alle Felder aus";
+    } else {
+        $con = new mysqli("localhost", "root", "", "Drohnen");
+        if($con->connect_error) {
+            $error = "Du bist nicht mit der Datenbank verbunden";
+        } else {
+            $data = "SELECT * FROM Themen";
+            $res = $con->query($data);
+            if($res->num_rows > 0) {
+                while($i = $res->fetch_assoc()) {
+                    if($_POST['titel'] === $i['Titel']) {
+                        $error = "Dieser Titel ist bereits vergeben";
+                    }
+                }
+            }
+            if(empty($error)) {
+                $sql = "INSERT INTO Themen(Titel, Text, Benutzername) VALUES('$_POST[titel]', '$_POST[textarea]', '$_SESSION[Benutzername]')";
+                $con->query($sql);
+                $error = "Thema erfolgreich geteilt";
+            }
+        }
+
+        $con->close();
     }
 }
 ?>
