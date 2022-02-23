@@ -9,13 +9,32 @@
 
 <?php
 $error = "";
+$link = "Anmelden.php";
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    if (empty($_POST['nutzername'])) {
+    if (empty($_POST['nutzername']) or empty($_POST['passwort'])) {
         $error = "Bitte gebe einen Nutzernamen ein";
-    } else if (empty($_POST['passwort'])) {
-        $error = "Bitte gebe ein Passwort ein";
+    } else {
+        $con = new mysqli("localhost", "root", "", "Drohnen");
+        if ($con->connect_error) {
+            $error = "Du bist nicht mit der Datenbank verbunden";
+        } else {
+            $data = "SELECT * FROM Nutzerdaten";
+            $res = $con->query($data);
+            if ($res->num_rows > 0) {
+                while ($i = $res->fetch_assoc()) {
+                    if ($_POST['nutzername'] === $i['Benutzername'] and $_POST['passwort'] === $i['Passwort']) {
+                        header('location: Hauptseite.php');
+                    }
+                }
+            }
+            if (empty($error)) {
+                $error = "nicht erfolgreich";
+            }
+        }
+        $con->close();
     }
 }
+
 ?>
 
 <h1 class="Überschrift center">Willkommen auf dem Drohnenforum!</h1>
@@ -25,10 +44,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         Nutzername: <input type="text" name="nutzername"> <br> <br>
         Passwort: <input type="password" name="passwort"> <br> <br>
         <input type="submit" value="anmelden"> <br>
-        <div class="red">
-            <?php echo $error; ?>
-        </div>
     </form>
+    <div class="red">
+        <?php echo $error; ?>
+    </div>
     <p class="left">
         Noch nicht regristiert? <a href="Registrieren.php">Jetzt registrieren!</a>
     </p>
