@@ -24,6 +24,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 while ($i = $res->fetch_assoc()) {
                     if ($_POST['nutzername'] === $i['Benutzername'] and $_POST['passwort'] === $i['Passwort']) {
                         header('location: Hauptseite.php');
+                        $sql = "INSERT INTO eingeloggtenutzer(Benutzername) VALUES('$_POST[nutzername]')";
+                        $con->query($sql);
                     }
                 }
             }
