@@ -1,0 +1,67 @@
+.Überschrift {
+    background-color: deepskyblue;
+    margin-bottom: 50px;
+    margin-top: 50px;
+}
+
+.center {
+    text-align: center;
+}
+
+.left {
+    text-align: left;
+}
+
+.red {
+    color: red;
+}
+
+ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    width: 15%;
+    background-color: #D0D0D0;
+    position: fixed;
+    height: 100%;
+    overflow: auto;
+}
+
+.formular {
+    margin-right: 35%;
+    margin-left: 35%;
+    text-align: right;
+}
+
+li a {
+    display: block;
+    color: black;
+    padding: 10px 0 10px 10px;
+    text-decoration: none;
+}
+
+li a:hover {
+    background-color: #777;
+    color: white;
+}
+
+li a.aktiv {
+    text-decoration: underline;
+}
+
+.textarea {
+    border: 1px solid #000;
+    width: 100%;
+    background-color: white;
+}
+
+.Textfeld {
+    margin-left: 15%;
+    padding-left: 1%;
+    width: 83%;
+}
+
+.wrapper {
+    display: flex;
+    justify-content: space-between;
+}
