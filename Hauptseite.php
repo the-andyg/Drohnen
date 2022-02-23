@@ -36,7 +36,7 @@
         if ($res->num_rows > 0) {
             while ($i = $res->fetch_assoc()) {
                 $alleThemen = $i['Titel'];
-                echo "<h3><a href='Thema.php'>$alleThemen</a></h3> <br>";
+                echo "<h3><a href='Thema.php?thema=$i[Titel]&seite=0'>$alleThemen</a></h3> <br>";
             }
         }
     }

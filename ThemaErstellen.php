@@ -12,7 +12,7 @@ SESSION_START();
 $error = "";
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if (empty($_POST['titel']) or empty($_POST['textarea'])) {
-        $error = "Bitte fülle alle Felder aus";
+        $error = "Bitte fülle alle Felder aus!";
     } else {
         $con = new mysqli("localhost", "root", "", "Drohnen");
         if($con->connect_error) {

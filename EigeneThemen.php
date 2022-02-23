@@ -23,5 +23,28 @@
         <a href="Anmelden.php">abmelden</a>
     </li>
 </ul>
+
+<div class="Textfeld">
+    <?php
+    session_start();
+    $alleThemen = "";
+    $con = new mysqli("localhost", "root", "", "Drohnen");
+    if ($con->connect_error) {
+        $error = "Du bist nicht mit der Datenbank verbunden";
+    } else {
+        $data = "SELECT * FROM Themen";
+        $res = $con->query($data);
+        if ($res->num_rows > 0) {
+            while ($i = $res->fetch_assoc()) {
+                if ($i["Benutzername"] === $_SESSION["Benutzername"]) {
+                    $alleThemen = $i['Titel'];
+                    echo "<h3><a href='Thema.php?thema=$i[Titel]&seite=eins'>$alleThemen</a></h3> <br>";
+                }
+            }
+        }
+    }
+    ?>
+</div>
+
 </body>
 </html>
