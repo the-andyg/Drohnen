@@ -6,6 +6,18 @@
     <link rel="stylesheet" type="text/css" href="Style.css">
 </head>
 <body>
+
+<?php
+$error = "";
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    if (empty($_POST['titel'])) {
+        $error = "Bitte gebe einen Titel ein";
+    } else if (empty($_POST['textarea'])) {
+        $error = "Bitte gebe einen Text ein";
+    }
+}
+?>
+
 <h1 class="Überschrift center">
     Drohnenforum
 </h1>
@@ -26,9 +38,12 @@
 
 <div class="Textfeld">
     <h3>Neues Thema:</h3>
-    <form>
+    <form method="post" action="ThemaErstellen.php">
         Titel:<br> <input type="text" name="titel" class="textarea"><br><br>
-        Text:<br> <textarea rows="6" class="textarea"></textarea><br><br>
+        Text:<br> <textarea rows="6" name="textarea" class="textarea"></textarea><br><br>
+        <div class="red">
+            <?php echo $error; ?>
+        </div>
         <div class="wrapper">
         <div class="box1"><a href="Hauptseite.php">abbrechen</a></div>
         <div class="box2"><input type="submit" value="absenden" class="absenden"></div>
