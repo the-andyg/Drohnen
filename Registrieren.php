@@ -10,13 +10,31 @@
 <?php
 $error = "";
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    if (empty($_POST['nutzername'])) {
-        $error = "Bitte gebe einen Nutzernamen ein";
-    } else if (empty($_POST['passwort'])) {
-        $error = "Bitte gebe ein Passwort ein";
-    } else if (empty($_POST['passwort2'])) {
-        $error = "Bitte gebe ein Passwort ein";
-    }
+    if (empty($_POST['nutzername']) or empty($_POST['passwort']) or empty($_POST['passwort2'])) {
+        $error = "Bitte fülle alle Felder aus";
+    } else {
+        $con = new mysqli("localhost", "root", "", "Drohnen");
+        if($con->connect_error) {
+            $error = "Du bist nicht mit der Datenbank verbunden";
+        } else {
+            $data = "SELECT * FROM Nutzerdaten";
+            $res = $con->query($data);
+            if($res->num_rows > 0) {
+                while($i = $res->fetch_assoc()) {
+                    if($_POST['nutzername'] === $i['Benutzername']) {
+                        $error = "Dieser Nutzername existiert bereits";
+                    }
+                }
+            }
+            if(empty($error)) {
+                $sql = "INSERT INTO Nutzerdaten(Benutzername, Passwort) VALUES('$_POST[nutzername]', '$_POST[passwort]')";
+                $con->query($sql);
+                $error = "Du bist erfolgreich registriert" . "<a href='Anmelden.php'>" . "Hier geht es zur Anmeldung" . "</a>";
+            }
+          }
+
+        $con->close();
+      }
 }
 ?>
 
