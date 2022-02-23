@@ -8,6 +8,7 @@
 <body>
 
 <?php
+SESSION_START();
 $error = "";
 $link = "Anmelden.php";
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
@@ -23,9 +24,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             if ($res->num_rows > 0) {
                 while ($i = $res->fetch_assoc()) {
                     if ($_POST['nutzername'] === $i['Benutzername'] and $_POST['passwort'] === $i['Passwort']) {
-                        header('location: Hauptseite.php');
                         $sql = "INSERT INTO eingeloggtenutzer(Benutzername) VALUES('$_POST[nutzername]')";
                         $con->query($sql);
+                        $_SESSION["Benutzername"] = $_POST['nutzername'];
+                        header('location: Hauptseite.php');
                     }
                 }
             }
@@ -36,24 +38,28 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $con->close();
     }
 }
-
 ?>
 
 <h1 class="Überschrift center">Willkommen auf dem Drohnenforum!</h1>
 
 <div class="formular">
+    <div class="left">
+        <?php if (!empty($_SESSION["registrierung"])) {
+            echo $_SESSION["registrierung"] . "<br>";
+            $_SESSION["registrierung"] = "";
+        }
+        ?>
+    </div>
     <form method="post" action="Anmelden.php">
         Nutzername: <input type="text" name="nutzername"> <br> <br>
         Passwort: <input type="password" name="passwort"> <br> <br>
-        <input type="submit" value="anmelden"> <br>
+        <div class="wrapper">
+            <a href="Registrieren.php">Jetzt registrieren!</a>
+            <input type="submit" value="anmelden">
+        </div>
     </form>
     <div class="red">
         <?php echo $error; ?>
-    </div>
-    <p class="left">
-        Noch nicht regristiert? <a href="Registrieren.php">Jetzt registrieren!</a>
-    </p>
-</div>
 
 </body>
 </html>

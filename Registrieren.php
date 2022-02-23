@@ -31,13 +31,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             if (empty($error)) {
                 $sql = "INSERT INTO Nutzerdaten(Benutzername, Passwort) VALUES('$_POST[nutzername]', '$_POST[passwort]')";
                 $con->query($sql);
+                SESSION_START();
+                $_SESSION["registrierung"] = "Die Registrierung war erfolgreich!";
                 header('location: Anmelden.php');
             }
         }
         $con->close();
     }
 }
-
 ?>
 
 <h1 class="Überschrift center">Willkommen auf dem Drohnenforum!</h1>
@@ -47,10 +48,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         Nutzername: <input type="text" name="nutzername"> <br> <br>
         Passwort: <input type="password" name="passwort"> <br> <br>
         Passwort wiederholen: <input type="password" name="passwort2"> <br> <br>
-        <?php echo $error; ?>
         <div class="wrapper">
             <a href="Anmelden.php">zurück</a>
             <input type="submit" value="registrieren">
+        </div>
+        <div class="red">
+            <?php echo $error; ?>
         </div>
     </form>
 </div>
