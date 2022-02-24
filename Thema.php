@@ -10,6 +10,7 @@
 <?php
 SESSION_START();
 $error = "";
+$titel = $_GET["thema"];
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if (empty($_POST['textarea'])) {
         $error = "Der Kommentar darf nicht leer sein!";
@@ -18,9 +19,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         if ($con->connect_error) {
             $error = "Du bist nicht mit der Datenbank verbunden";
         }
+        $numberof = 0;
+        $data = "SELECT * FROM themen";
+        $res = $con->query($data);
         if (empty($error)) {
             $time = time();
-            $sql = "INSERT INTO Kommentare(Titel, Kommentar, Benutzername, Zeitstempel) VALUES('$_GET[thema]', '$_POST[textarea]', '$_SESSION[Benutzername]', '$time')";
+            $sql = "INSERT INTO Kommentare(Titel, Kommentar, Benutzername, Zeitstempel) VALUES('$titel', '$_POST[textarea]', '$_SESSION[Benutzername]', '$time')";
             $con->query($sql);
             $error = "Kommentar erfolgreich geteilt!";
         }
@@ -53,7 +57,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     <?php
     $con = new mysqli("localhost", "root", "", "Drohnen");
-    $titel = $_GET["thema"];
     $link = "Thema.php" . $titel;
     if ($_GET["seite"] === "eins") {
         $linkzuruck = "EigeneThemen.php";

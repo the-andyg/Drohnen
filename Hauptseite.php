@@ -29,6 +29,7 @@
 
 <div class="Textfeld">
     <?php
+    $numberof = 0;
     $con = new mysqli("localhost", "root", "", "Drohnen");
     if ($con->connect_error) {
         $error = "Du bist nicht mit der Datenbank verbunden";
@@ -38,6 +39,13 @@
         if ($res->num_rows > 0) {
             while ($i = $res->fetch_assoc()) {
                 $time = date('d.m.Y - H:i:s', $i['Zeitstempel']);
+                $data2 = "SELECT * FROM Kommentare";
+                $res2 = $con->query($data2);
+                while ($j = $res2->fetch_assoc()) {
+                    if ($j['Titel'] === $i['Titel']) {
+                        $numberof ++;
+                    }
+                }
                 echo "<div class='themen'>
                             <div class='abstandlinksrechts'>
                                 <div class='wrapper'>
@@ -46,13 +54,14 @@
                                 </div>
                                 <div class='wrapper'> 
                                     <h3>Titel:</h3>
-                                    <p class='textrechts'>Kommentare:</p>
+                                    <p class='textrechts'>Kommentare: $numberof</p>
                                 </div>
                                 <h3>
                                     <a class='black' href='Thema.php?thema=$i[Titel]&seite=0'>$i[Titel]</a>
                                 </h3>
                             </div>    
                         </div>";
+                $numberof = 0;
             }
         }
     }
