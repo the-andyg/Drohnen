@@ -73,8 +73,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             <?php echo $error; ?>
         </div>
         <div class="wrapper">
-            <div class="box1"><a href="Hauptseite.php">abbrechen</a></div>
-            <div class="box2"><input type="submit" value="absenden" class="absenden"></div>
+            <div><a href="Hauptseite.php">abbrechen</a></div>
+            <div><input type="submit" value="absenden" class="absenden"></div>
         </div>
     </form>
 

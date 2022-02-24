@@ -60,9 +60,12 @@
                                     <h3>Titel:</h3>
                                     <p class='textrechts'>Kommentare: $numberof</p>
                                 </div>
-                                <h3>
-                                    <a class='black unterstrichen' href='Thema.php?thema=$i[Titel]&seite=eins'>$i[Titel]</a>
-                                </h3>
+                                <div class='wrapper'>
+                                    <h3>
+                                        <a class='black unterstrichen' href='Thema.php?thema=$i[Titel]&seite=eins'>$i[Titel]</a>
+                                    </h3>
+                                    <a href='ThemaÄndern.php?thema=$i[Titel]'>Bearbeiten</a>
+                                </div>
                             </div>    
                         </div>";
                     $numberof = 0;
