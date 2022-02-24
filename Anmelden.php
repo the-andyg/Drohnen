@@ -10,7 +10,14 @@
 <?php
 SESSION_START();
 $error = "";
-$link = "Anmelden.php";
+$nachricht = "";
+if (isset($_GET["abmelden"])) {
+    $_SESSION["Benutzername"] = null;
+    $nachricht = "Du wurdest erfogreich abgemeldet!";
+}
+if (isset($_GET["registrierung"])) {
+    $nachricht = "Die Registrierung war erfolgreich!";
+}
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if (empty($_POST['nutzername']) or empty($_POST['passwort'])) {
         $error = "Bitte gebe einen Nutzernamen ein";
@@ -42,10 +49,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 <div class="formular">
     <div class="left">
-        <?php if (!empty($_SESSION["registrierung"])) {
-            echo $_SESSION["registrierung"] . "<br>";
-            $_SESSION["registrierung"] = "";
-        }
+        <?php
+        echo $nachricht;
         ?>
     </div>
     <form method="post" action="Anmelden.php">

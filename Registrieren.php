@@ -31,10 +31,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             if (empty($error)) {
                 $sql = "INSERT INTO Nutzerdaten(Benutzername, Passwort) VALUES('$_POST[nutzername]', '$_POST[passwort]')";
                 $con->query($sql);
-                SESSION_START();
-                session_start();
-                $_SESSION["registrierung"] = "Die Registrierung war erfolgreich!";
-                header('location: Anmelden.php');
+                header('location: Anmelden.php?registrierung=');
             }
         }
         $con->close();

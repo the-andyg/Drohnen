@@ -60,7 +60,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         <a class="aktiv" href="ThemaErstellen.php">neues Thema erstellen</a>
     </li>
     <li>
-        <a href="Anmelden.php">abmelden</a>
+        <a href="Anmelden.php?abmelden=">abmelden</a>
     </li>
 </ul>
 

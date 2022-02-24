@@ -4,7 +4,6 @@
     <meta charset="UTF-8">
     <title>Thema "thema name"</title>
     <link rel="stylesheet" type="text/css" href="Style.css">
-    <link href="PHPFunctions.php" rel="import">
 </head>
 <body>
 
@@ -53,7 +52,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         <a href="ThemaErstellen.php">neues Thema erstellen</a>
     </li>
     <li>
-        <a href="Anmelden.php">abmelden</a>
+        <a href="Anmelden.php?abmelden=">abmelden</a>
     </li>
 </ul>
 
