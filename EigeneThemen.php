@@ -28,6 +28,9 @@
 
 <div class="Textfeld">
     <?php
+    if (isset($_GET["gelöscht"])) {
+        echo "<p class='red'>Beitrag wurde gelöscht!</p>";
+    }
     session_start();
     if ($_SESSION['Benutzername'] === null) {
         header('location: Anmelden.php');

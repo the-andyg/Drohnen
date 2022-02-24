@@ -30,7 +30,7 @@ if ($con->connect_error) {
             $con->query($data);
             $data = "DELETE FROM Kommentare WHERE Titel = '$_GET[thema]'";
             $con->query($data);
-            header('location: EigeneThemen.php');
+            header('location: EigeneThemen.php?gelöscht=');
         }
     }
 }
