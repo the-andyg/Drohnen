@@ -58,7 +58,7 @@
                                     <p class='textrechts'>Kommentare: $numberof</p>
                                 </div>
                                 <h3>
-                                    <a class='black margin' href='Thema.php?thema=$i[Titel]&seite=eins'>$i[Titel]</a>
+                                    <a class='black unterstrichen' href='Thema.php?thema=$i[Titel]&seite=eins'>$i[Titel]</a>
                                 </h3>
                             </div>    
                         </div>";
