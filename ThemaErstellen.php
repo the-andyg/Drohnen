@@ -28,7 +28,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 }
             }
             if (empty($error)) {
-                $sql = "INSERT INTO Themen(Titel, Text, Benutzername) VALUES('$_POST[titel]', '$_POST[textarea]', '$_SESSION[Benutzername]')";
+                $time = time();
+                $sql = "INSERT INTO Themen(Titel, Text, Benutzername, Zeitstempel) VALUES('$_POST[titel]', '$_POST[textarea]', '$_SESSION[Benutzername]', '$time')";
                 $con->query($sql);
                 $error = "Thema erfolgreich geteilt";
             }

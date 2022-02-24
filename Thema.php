@@ -19,7 +19,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $error = "Du bist nicht mit der Datenbank verbunden";
         }
         if (empty($error)) {
-            $sql = "INSERT INTO Kommentare(Titel, Kommentar, Benutzername) VALUES('$_GET[thema]', '$_POST[textarea]', '$_SESSION[Benutzername]')";
+            $time = time();
+            $sql = "INSERT INTO Kommentare(Titel, Kommentar, Benutzername, Zeitstempel) VALUES('$_GET[thema]', '$_POST[textarea]', '$_SESSION[Benutzername]', '$time')";
             $con->query($sql);
             $error = "Kommentar erfolgreich geteilt!";
         }
