@@ -89,10 +89,6 @@ li a.aktiv {
     border-bottom: 1px solid black;
 }
 
-.margin {
-
-}
-
 .abstandlinksrechts {
     margin-left: 1%;
     margin-right: 1%;
@@ -102,10 +98,10 @@ li a.aktiv {
     text-align: right;
 }
 
-.textlinks {
-    text-align: left;
-}
-
 .linieunten {
     border-bottom: black solid 1px;
+}
+
+.kommentar {
+    margin-left: 3%;
 }

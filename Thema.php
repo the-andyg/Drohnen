@@ -78,7 +78,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         }
     }
     ?>
-    <h3>Kommentare:</h3>
+    <h3 class="kommentar">Kommentare:</h3>
     <?php
     $count = 0;
     $alleKommentare = "";
@@ -91,7 +91,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             while ($i = $res->fetch_assoc()) {
                 if ($i['Titel'] === $titel) {
                     $count++;
-                    echo "<div class='themen'>
+                    echo "<div class='themen kommentar'>
                             <div class='abstandlinksrechts'>
                                 <div class='wrapper linieunten'>
                                     <p>Kommentar von: $i[Benutzername]</p>
@@ -103,12 +103,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 }
             }
             if ($count === 0) {
-                echo "<p>Keine Kommentare vorhanden. </p><br>";
+                echo "<p class='kommentar'>Keine Kommentare vorhanden.</p><br>";
             }
         }
     }
     ?>
-    <form method="post">
+    <form method="post" class="kommentar">
         <br>Kommentar hinzufügen:<br> <textarea rows="6" name="textarea" class="textarea"></textarea><br><br>
         <div class="red">
             <?php echo $error; ?>
