@@ -4,11 +4,15 @@
     <meta charset="UTF-8">
     <title>Thema "thema name"</title>
     <link rel="stylesheet" type="text/css" href="Style.css">
+    <link href="PHPFunctions.php" rel="import">
 </head>
 <body>
 
 <?php
 SESSION_START();
+if ($_SESSION['Benutzername'] === null) {
+    header('location: Anmelden.php');
+}
 $error = "";
 $titel = $_GET["thema"];
 if ($_SERVER["REQUEST_METHOD"] == "POST") {

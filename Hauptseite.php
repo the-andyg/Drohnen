@@ -29,6 +29,10 @@
 
 <div class="Textfeld">
     <?php
+    session_start();
+    if ($_SESSION['Benutzername'] === null) {
+        header('location: Anmelden.php');
+    }
     $numberof = 0;
     $con = new mysqli("localhost", "root", "", "Drohnen");
     if ($con->connect_error) {

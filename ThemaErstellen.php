@@ -8,7 +8,10 @@
 <body>
 
 <?php
-SESSION_START();
+session_start();
+if ($_SESSION['Benutzername'] === null) {
+    header('location: Anmelden.php');
+}
 $error = "";
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if (empty($_POST['titel']) or empty($_POST['textarea'])) {
