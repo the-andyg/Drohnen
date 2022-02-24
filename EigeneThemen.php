@@ -29,7 +29,6 @@
 <div class="Textfeld">
     <?php
     session_start();
-    $alleThemen = "";
     $con = new mysqli("localhost", "root", "", "Drohnen");
     if ($con->connect_error) {
         $error = "Du bist nicht mit der Datenbank verbunden";
@@ -39,7 +38,6 @@
         if ($res->num_rows > 0) {
             while ($i = $res->fetch_assoc()) {
                 if ($i["Benutzername"] === $_SESSION["Benutzername"]) {
-                    $alleThemen = $i['Titel'];
                     echo "<div class='themen'>
                             <div class='abstandlinksrechts'>
                                 <div class='wrapper'>
@@ -51,7 +49,7 @@
                                     <p class='textrechts'>Kommentare:</p>
                                 </div>
                                 <h3>
-                                    <a class='black margin' href='Thema.php?thema=$i[Titel]&seite=0'>$alleThemen</a>
+                                    <a class='black margin' href='Thema.php?thema=$i[Titel]&seite=eins'>$i[Titel]</a>
                                 </h3>
                             </div>    
                         </div>";
