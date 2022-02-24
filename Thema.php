@@ -65,11 +65,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if ($res->num_rows > 0) {
         while ($i = $res->fetch_assoc()) {
             if ($i['Titel'] === $titel) {
+                $time = date('d.m.Y - H:i:s', $i['Zeitstempel']);
                 echo "<div class='themen'>
                             <div class='abstandlinksrechts'>
                                 <div class='wrapper linieunten'>
                                     <p>Beitrag von: $i[Benutzername]</p>
-                                    <p>Datum:</p>
+                                    <p>Datum und Uhrzeit: $time</p>
                                 </div>
                                     <p>$i[Text]</p>
                             </div>    
@@ -90,12 +91,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         if ($res->num_rows > 0) {
             while ($i = $res->fetch_assoc()) {
                 if ($i['Titel'] === $titel) {
+                    $time = date('d.m.Y - H:i:s', $i['Zeitstempel']);
                     $count++;
                     echo "<div class='themen kommentar'>
                             <div class='abstandlinksrechts'>
                                 <div class='wrapper linieunten'>
                                     <p>Kommentar von: $i[Benutzername]</p>
-                                    <p>Datum:</p>
+                                    <p>Datum und Uhrzeit: $time</p>
                                 </div>
                                     <p>$i[Kommentar]</p>
                             </div>    

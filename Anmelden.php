@@ -58,6 +58,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     </form>
     <div class="red">
         <?php echo $error; ?>
+    </div>
 
 </body>
 </html>

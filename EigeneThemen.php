@@ -38,11 +38,12 @@
         if ($res->num_rows > 0) {
             while ($i = $res->fetch_assoc()) {
                 if ($i["Benutzername"] === $_SESSION["Benutzername"]) {
+                    $time = date('d.m.Y - H:i:s', $i['Zeitstempel']);
                     echo "<div class='themen'>
                             <div class='abstandlinksrechts'>
                                 <div class='wrapper'>
                                     <p>Beitrag von: $i[Benutzername]</p>
-                                    <p>Datum:</p>
+                                    <p>Datum und Uhrzeit: $time</p>
                                 </div>
                                 <div class='wrapper'> 
                                     <h3>Titel:</h3>

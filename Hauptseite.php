@@ -29,7 +29,6 @@
 
 <div class="Textfeld">
     <?php
-    $alleThemen = "";
     $con = new mysqli("localhost", "root", "", "Drohnen");
     if ($con->connect_error) {
         $error = "Du bist nicht mit der Datenbank verbunden";
@@ -38,19 +37,19 @@
         $res = $con->query($data);
         if ($res->num_rows > 0) {
             while ($i = $res->fetch_assoc()) {
-                $alleThemen = $i['Titel'];
+                $time = date('d.m.Y - H:i:s', $i['Zeitstempel']);
                 echo "<div class='themen'>
                             <div class='abstandlinksrechts'>
                                 <div class='wrapper'>
                                     <p>Beitrag von: $i[Benutzername]</p>
-                                    <p>Datum:</p>
+                                    <p>Datum und Uhrzeit: $time</p>
                                 </div>
                                 <div class='wrapper'> 
                                     <h3>Titel:</h3>
                                     <p class='textrechts'>Kommentare:</p>
                                 </div>
                                 <h3>
-                                    <a class='black' href='Thema.php?thema=$i[Titel]&seite=0'>$alleThemen</a>
+                                    <a class='black' href='Thema.php?thema=$i[Titel]&seite=0'>$i[Titel]</a>
                                 </h3>
                             </div>    
                         </div>";
