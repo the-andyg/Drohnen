@@ -28,11 +28,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 }
 
 ?>
-
-<h1 class="Überschrift center">
-    Drohnenforum
-</h1>
-
+<div class="header">
+    <h1 class="Überschrift center">
+        Drohnenforum
+    </h1>
+</div>
 <ul>
     <li>
         <a href="Hauptseite.php">alle Themen</a>
@@ -53,7 +53,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <?php
     $con = new mysqli("localhost", "root", "", "Drohnen");
     $titel = $_GET["thema"];
-    $link = "Thema.php".$titel;
+    $link = "Thema.php" . $titel;
     if ($_GET["seite"] === "eins") {
         $linkzuruck = "EigeneThemen.php";
     } else {
@@ -65,7 +65,15 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if ($res->num_rows > 0) {
         while ($i = $res->fetch_assoc()) {
             if ($i['Titel'] === $titel) {
-                echo "<h4>Beitrag von: <p class='red'> $i[Benutzername] </p> </h4> <br> <p>$i[Text]</p> <br>";
+                echo "<div class='themen'>
+                            <div class='abstandlinksrechts'>
+                                <div class='wrapper linieunten'>
+                                    <p>Beitrag von: $i[Benutzername]</p>
+                                    <p>Datum:</p>
+                                </div>
+                                    <p>$i[Text]</p>
+                            </div>    
+                        </div>";
             }
         }
     }
@@ -83,9 +91,16 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             while ($i = $res->fetch_assoc()) {
                 if ($i['Titel'] === $titel) {
                     $count++;
-                    echo "<h4>Kommentar von: $i[Benutzername]</h4> <br> <p>$i[Kommentar]</p> <br>";
+                    echo "<div class='themen'>
+                            <div class='abstandlinksrechts'>
+                                <div class='wrapper linieunten'>
+                                    <p>Kommentar von: $i[Benutzername]</p>
+                                    <p>Datum:</p>
+                                </div>
+                                    <p>$i[Kommentar]</p>
+                            </div>    
+                        </div>";
                 }
-
             }
             if ($count === 0) {
                 echo "<p>Keine Kommentare vorhanden. </p><br>";
@@ -94,7 +109,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
     ?>
     <form method="post">
-        Kommentar hinzufügen:<br> <textarea rows="6" name="textarea" class="textarea"></textarea><br><br>
+        <br>Kommentar hinzufügen:<br> <textarea rows="6" name="textarea" class="textarea"></textarea><br><br>
         <div class="red">
             <?php echo $error; ?>
         </div>
