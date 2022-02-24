@@ -6,9 +6,11 @@
     <link rel="stylesheet" type="text/css" href="Style.css">
 </head>
 <body>
-<h1 class="Überschrift center">
-    Drohnenforum
-</h1>
+<div class="header">
+    <h1 class="Überschrift center">
+        Drohnenforum
+    </h1>
+</div>
 <ul>
     <li>
         <a href="Hauptseite.php">alle Themen</a>

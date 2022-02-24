@@ -6,9 +6,12 @@
     <link rel="stylesheet" type="text/css" href="Style.css">
 </head>
 <body>
-<h1 class="Überschrift center">
-    Drohnenforum
-</h1>
+
+<div class="header">
+    <h1 class="Überschrift center">
+        Drohnenforum
+    </h1>
+</div>
 <ul>
     <li>
         <a class="aktiv" href="Hauptseite.php">alle Themen</a>
@@ -36,7 +39,7 @@
         if ($res->num_rows > 0) {
             while ($i = $res->fetch_assoc()) {
                 $alleThemen = $i['Titel'];
-                echo    "<div class='themen'>
+                echo "<div class='themen'>
                             <div class='abstandlinksrechts'>
                                 <div class='wrapper'>
                                     <p>Beitrag von: $i[Benutzername]</p>

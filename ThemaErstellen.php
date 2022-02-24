@@ -15,19 +15,19 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $error = "Bitte fülle alle Felder aus!";
     } else {
         $con = new mysqli("localhost", "root", "", "Drohnen");
-        if($con->connect_error) {
+        if ($con->connect_error) {
             $error = "Du bist nicht mit der Datenbank verbunden";
         } else {
             $data = "SELECT * FROM Themen";
             $res = $con->query($data);
-            if($res->num_rows > 0) {
-                while($i = $res->fetch_assoc()) {
-                    if($_POST['titel'] === $i['Titel']) {
+            if ($res->num_rows > 0) {
+                while ($i = $res->fetch_assoc()) {
+                    if ($_POST['titel'] === $i['Titel']) {
                         $error = "Dieser Titel ist bereits vergeben";
                     }
                 }
             }
-            if(empty($error)) {
+            if (empty($error)) {
                 $sql = "INSERT INTO Themen(Titel, Text, Benutzername) VALUES('$_POST[titel]', '$_POST[textarea]', '$_SESSION[Benutzername]')";
                 $con->query($sql);
                 $error = "Thema erfolgreich geteilt";
@@ -39,9 +39,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 }
 ?>
 
-<h1 class="Überschrift center">
-    Drohnenforum
-</h1>
+<div class="header">
+    <h1 class="Überschrift center">
+        Drohnenforum
+    </h1>
+</div>
+
 <ul>
     <li>
         <a href="Hauptseite.php">alle Themen</a>
@@ -66,8 +69,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             <?php echo $error; ?>
         </div>
         <div class="wrapper">
-        <div class="box1"><a href="Hauptseite.php">abbrechen</a></div>
-        <div class="box2"><input type="submit" value="absenden" class="absenden"></div>
+            <div class="box1"><a href="Hauptseite.php">abbrechen</a></div>
+            <div class="box2"><input type="submit" value="absenden" class="absenden"></div>
         </div>
     </form>
 
